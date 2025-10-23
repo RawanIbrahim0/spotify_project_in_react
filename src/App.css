@@ -9,3 +9,23 @@
 --delft-blue: #273469ff;
 --space-cadet: #1e2749ff;
  */
+
+ h1{
+    color: #30343fff;
+ }
+
+ h2{
+    color: #fafaffff;
+ }
+
+ h3{
+    color: #e4d9ffff;
+ }
+
+ h4{
+    color: #273469ff;
+ }
+
+ h5{
+    color: #1e2749ff;
+ }
