@@ -1,13 +1,28 @@
 import { useLocation } from "react-router";
+import { useEffect } from "react";
+
 
 const OneArtists = () => {
+
   const location = useLocation();
-  const artist = location.state?.artist;
-  console.log("aaaaaaaa : "+artist)
+   const artist =
+    location.state?.artist ||
+    JSON.parse(localStorage.getItem("artistData"));
+
+     if (!artist) {
+    return <p>Not Found This Artist</p>;
+  }
+
+  useEffect(() => {
+  return () => {
+    localStorage.removeItem("artistData");
+  };
+   }, []);
+
   return (
     <div className="text-white">
-      <h1 className="text-3xl font-bold">{artist?.artist}</h1>
-      <p>عدد الأغاني: {artist?.songs.length}</p>
+      <h2 className="text-3xl font-bold text-amber-50">{artist?.artist}</h2>
+      <p>number of songs:  {artist?.songs.length}</p>
 
       {artist?.songs.length > 0 && (
         <p>أول أغنية: {artist.songs[0].songName}</p>

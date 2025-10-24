@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import data from "../../assets/spotify_data_history.json";
 import TopArtists from "./TopArtists";
 import CardsArtist from "../../components/CardsArtist";
+import { useNavigate } from "react-router";
+
 
 const Artist = () => {
   const [artists, setArtists] = useState([]);
   const [visibleCount, setVisibleCount] = useState(20);
+
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     if (Array.isArray(data)) {
@@ -57,10 +63,19 @@ const Artist = () => {
     setVisibleCount((prev) => prev + 20);
   };
 
+ const ToOnArtistPage = (artistObj) => {
+
+  localStorage.setItem("artistData", JSON.stringify(artistObj));
+
+  navigate("/artist", { state: { artist: artistObj } });
+}
+
+
+
   return (
     <div className="p-10 ">
       <section className="w-[80%] justify-self-end">
-        <h1 className="text-3xl font-bold flex justify-center items-center gap-2 mb-7">
+        <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mb-7">
         <span className="text-white">All</span>
         <span className="text-[#8c61f9]">Artists</span>
       </h1>
@@ -69,7 +84,9 @@ const Artist = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
         {visibleArtists.map((artistObj, index) => (
           <div key={index}>
-            <CardsArtist name={artistObj.artist}/>
+            <CardsArtist name={artistObj.artist}
+             onclick={() => ToOnArtistPage(artistObj)}
+             />
           </div>
         ))}
       </div>

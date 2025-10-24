@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardsArtist from "../../components/CardsArtist";
 import FilterButton from "../../components/FilterButton";
 import { useNavigate } from "react-router";
@@ -61,7 +61,7 @@ const TopArtists = ({ artists }) => {
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold flex justify-center items-center gap-2">
+        <h1 className="text-3xl font-bold flex justify-start items-center mt-8 gap-2">
           <span className="text-white">Top</span>
           <span className="text-[#8c61f9]">Artists</span>
         </h1>
