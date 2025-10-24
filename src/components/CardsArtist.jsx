@@ -1,10 +1,9 @@
-import React from 'react'
 
-const CardsArtist = ({ name }) => {
+const CardsArtist = ({ name,onclick }) => {
     return (
-      <div className='flex flex-col justify-center items-center text-center '> 
-        <img src="ddd.jpg" alt="" className="rounded-full w-[80%]" />
-            <p className="text-2xl">{name}</p>
+      <div onClick={onclick} className='flex flex-col justify-center items-center text-center cursor-pointer '> 
+        <img src="/assets/images/ddd.png" alt="this is image" className="rounded-full w-[40%] h-[40%]" />
+            <p className="text-xl">{name}</p>
       </div>
     );
 };

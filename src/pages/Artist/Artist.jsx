@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import data from "../../assets/spotify_data_history.json";
 import TopArtists from "./TopArtists";
+import CardsArtist from "../../components/CardsArtist";
 
 const Artist = () => {
   const [artists, setArtists] = useState([]);
@@ -59,20 +60,16 @@ const Artist = () => {
   return (
     <div className="p-10 ">
       <section className="w-[80%] justify-self-end">
-        <h1 className="text-3xl font-bold flex justify-center items-center gap-2">
+        <h1 className="text-3xl font-bold flex justify-center items-center gap-2 mb-7">
         <span className="text-white">All</span>
         <span className="text-[#8c61f9]">Artists</span>
       </h1>
+
       <div className="  h-[50vh]  overflow-y-auto custom-scroll">
-
-
-      <h2 className="font-bold text-white">Total: {data.length}</h2>
-      <h2 className="font-bold text-white">Unique Artists: {artists.length}</h2>
-
-      <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
         {visibleArtists.map((artistObj, index) => (
           <div key={index}>
-            <h2>{artistObj.artist}</h2>
+            <CardsArtist name={artistObj.artist}/>
           </div>
         ))}
       </div>
