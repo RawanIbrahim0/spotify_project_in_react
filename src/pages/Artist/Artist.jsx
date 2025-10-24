@@ -4,7 +4,6 @@ import TopArtists from "./TopArtists";
 import CardsArtist from "../../components/CardsArtist";
 import { useNavigate } from "react-router";
 import ParticleBackground from "../../components/ParticleBackground";
-import Sidebar from "../../components/Sidebar";
 
 
 const Artist = () => {
