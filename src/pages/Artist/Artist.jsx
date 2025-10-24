@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 const Artist = () => {
   const [artists, setArtists] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Artist = () => {
 
   useEffect(() => {
     if (Array.isArray(data)) {
-     
+
       const artistSongs = data.reduce((acc, e) => {
         const artistName = e.master_metadata_album_artist_name;
         const songName = e.master_metadata_track_name;
@@ -47,7 +47,7 @@ const Artist = () => {
         return acc;
       }, {});
 
-    
+
       const artistArray = Object.entries(artistSongs).map(([artist, songs]) => ({
         artist,
         songs,
@@ -60,15 +60,15 @@ const Artist = () => {
   const visibleArtists = artists.slice(0, visibleCount);
 
   const handleViewMore = () => {
-    setVisibleCount((prev) => prev + 20);
+    setVisibleCount((prev) => prev + 12);
   };
 
- const ToOnArtistPage = (artistObj) => {
+  const ToOnArtistPage = (artistObj) => {
 
-  localStorage.setItem("artistData", JSON.stringify(artistObj));
+    localStorage.setItem("artistData", JSON.stringify(artistObj));
 
-  navigate("/artist", { state: { artist: artistObj } });
-}
+    navigate("/artist", { state: { artist: artistObj } });
+  }
 
 
 
@@ -76,33 +76,35 @@ const Artist = () => {
     <div className="p-10 ">
       <section className="w-[80%] justify-self-end">
         <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mb-7">
-        <span className="text-white">All</span>
-        <span className="text-[#8c61f9]">Artists</span>
-      </h1>
+          <span className="text-white">All</span>
+          <span className="text-[#8c61f9]">Artists</span>
+        </h1>
 
-      <div className="  h-[50vh]  overflow-y-auto custom-scroll">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-        {visibleArtists.map((artistObj, index) => (
-          <div key={index}>
-            <CardsArtist name={artistObj.artist}
-             onclick={() => ToOnArtistPage(artistObj)}
-             />
+        <div className="  h-[33vh]  overflow-y-auto custom-scroll">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+            {visibleArtists.map((artistObj, index) => (
+              <div key={index}>
+                <CardsArtist
+                  index={index}
+                  name={artistObj.artist}
+                  onclick={() => ToOnArtistPage(artistObj)}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      </div>
+        </div>
         {visibleCount < artists.length && (
-        <button
-          onClick={handleViewMore}
-          className="bg-[#8c61f9] text-white px-4 py-2 mt-4 rounded hover:bg-[#7a4ff0]"
-        >
-          View More
-        </button>
-      )}
+          <button
+            onClick={handleViewMore}
+            className="bg-[#8c61f9] text-white px-4 py-2 mt-4 rounded hover:bg-[#7a4ff0]"
+          >
+            View More
+          </button>
+        )}
       </section>
 
       <section className="w-[80%] justify-self-end">
-        <TopArtists artists={artists}/>
+        <TopArtists artists={artists} />
       </section>
     </div>
   );

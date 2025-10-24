@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 const TopArtists = ({ artists }) => {
   const [sortedArtists, setSortedArtists] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(12);
   const [activeFilter, setActiveFilter] = useState("All");
 
   const navigate = useNavigate();
@@ -45,16 +45,16 @@ const TopArtists = ({ artists }) => {
     );
 
     setSortedArtists(sorted.slice(0, 100));
-    setVisibleCount(10);
+    setVisibleCount(12);
   };
 
   const handleViewMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 10, 100));
+    setVisibleCount((prev) => Math.min(prev + 12, 100));
   };
-  
+
   const ToOnArtistPage = (artistObj) => {
-  navigate("/artist", { state: { artist: artistObj } });
-}
+    navigate("/artist", { state: { artist: artistObj } });
+  }
 
   const visibleArtists = sortedArtists.slice(0, visibleCount);
 
@@ -90,11 +90,13 @@ const TopArtists = ({ artists }) => {
         </div>
       </div>
 
-      <div className="h-[50vh] overflow-y-auto custom-scroll grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mt-7">
+      <div className="h-[33vh] overflow-y-auto custom-scroll grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mt-7">
         {visibleArtists.map((artistObj, index) => (
           <div key={index}>
-            <CardsArtist name={artistObj.artist}
-             onclick={() => ToOnArtistPage(artistObj)} />
+            <CardsArtist
+              index={index}
+              name={artistObj.artist}
+              onclick={() => ToOnArtistPage(artistObj)} />
           </div>
         ))}
       </div>
