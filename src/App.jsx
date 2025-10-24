@@ -1,11 +1,14 @@
 import './App.css'
+import Sidebar from './components/Sidebar'
 import Artist from './pages/Artist/Artist'
+
 
 function App() {
   
   return (
     <>
-    <Artist/>
+    <Sidebar />
+    <Artist />
     </>
   )
 }
