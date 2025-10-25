@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import CardAlbums from "../../components/CardAlbums"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 

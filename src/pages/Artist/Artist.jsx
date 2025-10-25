@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import data from "../../assets/spotify_data_history.json";
-import TopArtists from "./TopArtists";
-import CardsArtist from "../../components/CardsArtist";
-import { useNavigate } from "react-router";
-import ParticleBackground from "../../components/ParticleBackground";
-import AllAlbums from "./AllAlbums";
+import { useEffect, useState } from "react"
+import data from "../../assets/spotify_data_history.json"
+import TopArtists from "./TopArtists"
+import CardsArtist from "../../components/CardsArtist"
+import { useNavigate } from "react-router"
+import ParticleBackground from "../../components/ParticleBackground"
+import AllAlbums from "./AllAlbums"
 
 
 
