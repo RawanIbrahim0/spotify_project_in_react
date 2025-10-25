@@ -37,11 +37,11 @@ const TopSongsChart = ({ songs }) => {
           Top 10 Songs by Listening Time
       </h3>
 
-      <div className="bg-white/10 p-4 rounded-2xl shadow-lg">
+      <div className="bg-white/10 p-3 rounded-2xl shadow-lg">
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
             data={chartData}
-            margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+            margin={{ top: 20, right: 30, left: 0, bottom: 85 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
             <XAxis

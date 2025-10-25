@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import FilterButton from "../../components/FilterButton";
 import TopSongsChart from "../../components/TopSongsChart";
+import CardsSong from "../../components/CardsSong";
 
 const Top20SongsSection = ({ songs }) => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -63,8 +64,10 @@ const Top20SongsSection = ({ songs }) => {
 
   return (
     <section className="mt-6 w-[80%] justify-self-end">
-      <h3 className="text-2xl font-semibold text-amber-200 mb-2">Top 20 Songs</h3>
-
+         <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mb-7">
+                <span className="text-white">Top 20</span>
+                <span className="text-[#8c61f9]">Songs</span>
+              </h1>
       {/* أزرار الفلترة */}
       <div className="flex justify-end items-center gap-2 mb-4">
         {["All", "Last 4 week", "Last 6 month", "Last Year"].map((filter) => (
@@ -78,7 +81,7 @@ const Top20SongsSection = ({ songs }) => {
       </div>
 
       {/* جدول الأغاني */}
-      <table className="min-w-full bg-transparent text-white border-separate border-spacing-y-2">
+    {/*   <table className="min-w-full bg-transparent text-white border-separate border-spacing-y-2">
         <thead>
           <tr className="text-left text-amber-400">
             <th>#</th>
@@ -97,8 +100,19 @@ const Top20SongsSection = ({ songs }) => {
             </tr>
           ))}
         </tbody>
-      </table>
-
+      </table> */}
+          <div className="  h-[33vh]  overflow-y-auto custom-scroll">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                  {topSongs.map((song, index) => (
+                    <div key={index}>
+                      <CardsSong
+                        index={index}
+                        name={song.songName}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
         {/* BarChart للأغاني */}
           <TopSongsChart songs={filteredSongs} />
     </section>

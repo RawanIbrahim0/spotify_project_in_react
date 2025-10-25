@@ -82,15 +82,15 @@ const Artist = () => {
         <div
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundColor: "rgba(48, 52, 63, 0.5)",
+            backgroundColor: "rgba(30, 39, 73, 0.6)",
             zIndex: 0
           }}
         />
         {/* محتوى الصفحة */}
         <div className="relative z-10 p-10">
           <div className="p-10 ">
-            <section className="w-[80%] justify-self-end">
-              <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mb-7">
+            <section className="w-[80%] justify-self-end border-2 p-3 border-[#273469ff] rounded-xl">
+              <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mt-3 mb-2">
                 <span className="text-white">All</span>
                 <span className="text-[#8c61f9]">Artists</span>
               </h1>
@@ -118,7 +118,7 @@ const Artist = () => {
               )}
             </section>
 
-            <section className="w-[80%] justify-self-end">
+            <section className="w-[80%] justify-self-end border-2 p-3 border-[#273469ff] rounded-xl mt-8">
               <TopArtists artists={artists} />
             </section>
           </div>

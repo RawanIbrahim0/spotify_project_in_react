@@ -61,12 +61,12 @@ const TopArtists = ({ artists }) => {
   return (
     <div>
       <div>
-        <h1 className="text-3xl font-bold flex justify-start items-center mt-8 gap-2">
+        <h1 className="text-3xl font-bold flex justify-start items-center mt-3 gap-2">
           <span className="text-white">Top</span>
           <span className="text-[#8c61f9]">Artists</span>
         </h1>
 
-        <div className="flex justify-end items-center gap-2 mt-7">
+        <div className="flex justify-end items-center gap-2 mt-2">
           <FilterButton
             text="All"
             onclick={() => filterArtists("All")}

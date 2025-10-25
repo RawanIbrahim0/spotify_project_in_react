@@ -9,7 +9,7 @@ const ParticleBackground = () => {
     script.onload = () => {
       particlesJS("particles-js", {
         particles: {
-          number: { value: 20, density: { enable: true, value_area: 800 } },
+          number: { value: 30, density: { enable: true, value_area: 800 } },
           shape: {
             type: "image",
             image: { src: "/assets/images/one.png", width: 30, height: 30}

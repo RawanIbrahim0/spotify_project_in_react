@@ -16,8 +16,8 @@ function Sidebar() {
 
   return (
     <div
-      className="w-[20%] fixed z-10 h-screen flex flex-col justify-between py-8 px-4"
-      style={{ backgroundColor: "#1e2749ff", color: "#fafaffff" }}
+      className="w-[20%] fixed z-10 h-screen flex flex-col justify-between py-8 px-4 border-r-2 border-[#8c61f9]"
+      style={{ backgroundColor: "#1e2749ff", color: "#fafaffff", boxShadow:"5px 0 10px -3px rgba(140, 97, 249,0.8)" }}
     >
       <div className="mb-10 text-center">
         <img src={logo} />

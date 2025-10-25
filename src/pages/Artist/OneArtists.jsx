@@ -57,17 +57,20 @@ const OneArtists = () => {
         {/* طبقة شفافة فوق الخلفية */}
         <div
           className="absolute top-0 left-0 w-full h-full"
-          style={{ backgroundColor: "rgba(48, 52, 63, 0.5)", zIndex: 0 }}
+          style={{ backgroundColor: "rgba(30, 39, 73, 0.6)", zIndex: 0 }}
         />
 
         {/* محتوى الصفحة */}
-        <div className="relative z-10 p-10">
+        <div className="relative z-10 p-5">
           {/* معلومات الفنان */}
           <section className="w-[80%] justify-self-end mb-6">
-            <h2 className="text-3xl font-bold text-amber-50">{artist?.artist}</h2>
-            <p>Number of songs: {artist?.songs.length}</p>
-            <p>Total listening time: {totalMinutes} minutes</p>
-            <p>Most listened season: {mostPlayedSeason}</p>
+            <div className="p-10 flex justify-between items-end w-full h-110 bg-[url(/assets/images/singer3.jpeg)] bg-no-repeat bg-cover rounded-xl">
+              <h2 className=" text-5xl font-bold text-amber-50">{artist?.artist}</h2>
+              <p><strong>Number of songs: </strong>{artist?.songs.length}</p>
+            <p><strong>Total listening time: </strong>{totalMinutes} minutes</p>
+            <p> <strong>Most listened season: </strong>{mostPlayedSeason}</p>
+            </div>
+            
           </section>
 
           <Top20SongsSection songs={artist.songs} />
