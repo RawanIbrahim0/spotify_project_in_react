@@ -4,13 +4,16 @@ import ParticleBackground from "../../components/ParticleBackground"
 import Sidebar from "../../components/Sidebar"
 import Top20SongsSection from "./Top20Songs"
 import AllAlbums from "./AllAlbums"
+import AllSongs from "./AllSongs"
 
 const OneArtist = () => {
   const [AllAlbum, setAllAlbums] = useState([])
   const location = useLocation()
 
-  const artist =
-    location.state?.artist || JSON.parse(localStorage.getItem("artistData"))
+  const artist = location.state?.artist || JSON.parse(localStorage.getItem("artistData"))
+  const totalAllMinutesAllSongs = location.state?.totalMinutes || 0;
+
+
 
   if (!artist) {
     return <p>Not Found This Artist</p>
@@ -51,6 +54,9 @@ const OneArtist = () => {
     ?.reduce((acc, song) => acc + song.msPlayed / 1000 / 60, 0)
     .toFixed(2)
 
+  const percentage = ((totalMinutes / totalAllMinutesAllSongs) * 100).toFixed(2)
+  console.log("Percentage:", percentage, "%")
+
   // تحديد الموسم الأكثر استماعًا
   const getSeason = (month) => {
     if (month === 12 || month === 1 || month === 2) return "Winter"
@@ -70,8 +76,8 @@ const OneArtist = () => {
   const mostPlayedSeason =
     Object.keys(seasonCount).length > 0
       ? Object.entries(seasonCount).reduce((a, b) =>
-          b[1] > a[1] ? b : a
-        )[0]
+        b[1] > a[1] ? b : a
+      )[0]
       : "No data"
 
   useEffect(() => {
@@ -86,41 +92,53 @@ const OneArtist = () => {
   return (
     <div>
       {/* الشريط الجانبي */}
-      <Sidebar />
-
-      <div className="relative min-h-screen">
+{/*       <Sidebar />
+ */}      <div className="relative min-h-screen">
         <ParticleBackground />
         <div
           className="absolute top-0 left-0 w-full h-full"
           style={{ backgroundColor: "rgba(30, 39, 73, 0.6)", zIndex: 0 }}
         />
 
-        <div className="relative z-10 p-5">
+        <div className="relative z-100 p-5 w-[80%] justify-self-end">
           {/* معلومات الفنان */}
-          <section className="w-[80%] justify-self-end mb-6">
+          <section className=" mb-6">
             <div className="p-10 flex justify-between items-end w-full h-110 bg-[url(/assets/images/singer3.jpeg)] bg-no-repeat bg-cover rounded-xl">
               <h2 className="text-5xl font-bold text-amber-50">
                 {artist?.artist}
               </h2>
-              <div className="text-white flex justify-between items-center gap-12">
+              <div className="text-xl text-white flex justify-between items-center gap-8">
                 <p>
-                  <strong>Number of songs: </strong>
-                  {artist?.songs.length}
+                 Number of songs: 
+                   <strong className="text-[#8c61f9] text-3xl"> {artist?.songs.length}</strong>
                 </p>
                 <p>
-                  <strong>Total listening time: </strong>
-                  {totalMinutes} minutes
+                  Listening time:
+                  <strong className="text-[#8c61f9] text-xl"> {totalMinutes} min </strong>
+                </p>
+                 <p>
+                  Percent of Listening: 
+                  <strong className="text-[#8c61f9] text-xl"> {percentage} % </strong>
                 </p>
                 <p>
-                  <strong>Most listened season: </strong>
-                  {mostPlayedSeason}
+                  Most Listened Season:  
+                  <strong  className="text-[#8c61f9] text-xl"> {mostPlayedSeason}</strong>
                 </p>
               </div>
             </div>
           </section>
 
+          {/*كل الأغاني */}
+          <section className="mb-6 p-3">
+            <h1 className="text-3xl font-bold flex items-center gap-2">
+              <span className="text-white">All</span>
+              <span className="text-[#8c61f9]">Songs</span>
+            </h1>
+            <AllSongs artist={artist} />
+          </section>
+
           {/* قسم الألبومات */}
-          <section className="w-[80%] h-[30%] justify-self-end p-3 mt-8">
+          <section className=" h-[30%] p-3 mt-8">
             <AllAlbums albums={AllAlbum} />
           </section>
 
@@ -132,4 +150,4 @@ const OneArtist = () => {
   );
 };
 
-export default OneArtist;
+export default OneArtist

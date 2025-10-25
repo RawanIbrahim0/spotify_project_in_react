@@ -8,7 +8,7 @@ const CardsArtist = ({ name, onclick, index }) => {
       <img
         src={imagePath}
         alt="artist"
-        className="rounded-full w-[50%] h-[50%]" />
+        className="rounded-full w-[50%] h-[50%] hover:scale-105 duration-200 transform" />
       <p className="text-xl">{name}</p>
     </div>
   );

@@ -15,5 +15,5 @@
 }
 
 .custom-scroll::-webkit-scrollbar {
-  display: none; /* إخفاء شريط التمرير */
+  display: none; 
 }

@@ -63,7 +63,7 @@ const Top20SongsSection = ({ songs }) => {
   };
 
   return (
-    <section className="mt-6 w-[80%] justify-self-end">
+    <section className="mt-6">
          <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mb-7">
                 <span className="text-white">Top 20</span>
                 <span className="text-[#8c61f9]">Songs</span>
