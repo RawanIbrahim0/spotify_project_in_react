@@ -4,33 +4,41 @@ import TopArtists from "./TopArtists";
 import CardsArtist from "../../components/CardsArtist";
 import { useNavigate } from "react-router";
 import ParticleBackground from "../../components/ParticleBackground";
+import AllAlbums from "./AllAlbums";
+
+
 
 
 const Artist = () => {
-  const [artists, setArtists] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [artists, setArtists] = useState([])
+  const [AllAlbum, setAllAlbums] = useState([])
 
-  const navigate = useNavigate();
+  const [visibleCount, setVisibleCount] = useState(12)
+
+  const navigate = useNavigate()
 
 
 
   useEffect(() => {
     if (Array.isArray(data)) {
 
+      const albums = getAllAlbums(data)
+      setAllAlbums(albums)
+
       const artistSongs = data.reduce((acc, e) => {
-        const artistName = e.master_metadata_album_artist_name;
-        const songName = e.master_metadata_track_name;
-        const albumName = e.master_metadata_album_album_name;
-        const timestamp = e.ts;
-        const msPlayed = e.ms_played;
-        const reasonStart = e.reason_start;
-        const reasonEnd = e.reason_end;
-        const shuffle = e.shuffle;
-        const skipped = e.skipped;
+        const artistName = e.master_metadata_album_artist_name
+        const songName = e.master_metadata_track_name
+        const albumName = e.master_metadata_album_album_name
+        const timestamp = e.ts
+        const msPlayed = e.ms_played
+        const reasonStart = e.reason_start
+        const reasonEnd = e.reason_end
+        const shuffle = e.shuffle
+        const skipped = e.skipped
 
         if (artistName && songName) {
           if (!acc[artistName]) {
-            acc[artistName] = [];
+            acc[artistName] = []
           }
 
           acc[artistName].push({
@@ -45,30 +53,63 @@ const Artist = () => {
             skipped,
           });
         }
-        return acc;
-      }, {});
+        return acc
+      }, {})
 
 
       const artistArray = Object.entries(artistSongs).map(([artist, songs]) => ({
         artist,
         songs,
-      }));
+      }))
 
-      setArtists(artistArray);
+      setArtists(artistArray)
     }
-  }, []);
+  }, [])
 
-  const visibleArtists = artists.slice(0, visibleCount);
+  const visibleArtists = artists.slice(0, visibleCount)
 
   const handleViewMore = () => {
-    setVisibleCount((prev) => prev + 12);
+    setVisibleCount((prev) => prev + 12)
   };
 
   const ToOnArtistPage = (artistObj) => {
 
-    localStorage.setItem("artistData", JSON.stringify(artistObj));
+    localStorage.setItem("artistData", JSON.stringify(artistObj))
 
-    navigate("/artist", { state: { artist: artistObj } });
+    navigate("/artist", { state: { artist: artistObj } })
+  }
+
+
+  // تابع لتجميع الألبومات والأغاني الخاصة بكل ألبوم
+  const getAllAlbums = (data) => {
+    const albumMap = {}
+
+    data.forEach((e) => {
+      const albumName = e.master_metadata_album_album_name
+      const artistName = e.master_metadata_album_artist_name
+      const songName = e.master_metadata_track_name
+
+      // نتأكد أن الألبوم والمغني والأغنية موجودين
+      if (albumName && artistName && songName) {
+        // إذا الألبوم مش موجود نضيفه
+        if (!albumMap[albumName]) {
+          albumMap[albumName] = {
+            albumName,
+            artistName,
+            songs: [],
+          };
+        }
+
+        // نضيف الأغنية إذا ما كانت مكررة
+        if (!albumMap[albumName].songs.includes(songName)) {
+          albumMap[albumName].songs.push(songName)
+        }
+      }
+    })
+
+    // نحول الـ object لمصفوفة منظمة
+    const AllAlbums = Object.values(albumMap)
+    return AllAlbums
   }
 
   return (
@@ -89,8 +130,9 @@ const Artist = () => {
         {/* محتوى الصفحة */}
         <div className="relative z-10 p-10">
           <div className="p-10 ">
+            {/* كل الفنانين */}
             <section className="w-[80%] justify-self-end border-2 p-3 border-[#273469ff] rounded-xl">
-              <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mt-3 mb-2">
+              <h1 className="text-3xl font-bold flex justify-start items-center gap-2 mt-3 mb-10">
                 <span className="text-white">All</span>
                 <span className="text-[#8c61f9]">Artists</span>
               </h1>
@@ -118,6 +160,11 @@ const Artist = () => {
               )}
             </section>
 
+            {/*كل الألبومات */}
+            <section className="w-[80%] h-[30%] justify-self-end p-3  mt-8">
+              <AllAlbums albums={AllAlbum} />
+            </section>
+
             <section className="w-[80%] justify-self-end border-2 p-3 border-[#273469ff] rounded-xl mt-8">
               <TopArtists artists={artists} />
             </section>
@@ -127,7 +174,7 @@ const Artist = () => {
     </div>
 
 
-  );
-};
+  )
+}
 
-export default Artist;
+export default Artist

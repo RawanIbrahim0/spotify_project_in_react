@@ -56,7 +56,7 @@ const TopArtists = ({ artists }) => {
     navigate("/artist", { state: { artist: artistObj } });
   }
 
-  const visibleArtists = sortedArtists.slice(0, visibleCount);
+  const visibleArtists = sortedArtists.slice(0, visibleCount)
 
   return (
     <div>
@@ -110,7 +110,7 @@ const TopArtists = ({ artists }) => {
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default TopArtists;
+export default TopArtists
