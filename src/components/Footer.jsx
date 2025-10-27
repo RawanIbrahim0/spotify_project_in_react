@@ -1,13 +1,13 @@
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
 import cat from "/assets/img/marshmello.png"
 import QR from "/assets/img/QRcode.png"
-import { AiOutlineYoutube } from "react-icons/ai";
+import { AiOutlineYoutube } from "react-icons/ai"
 
 
 const Footer = () => {
-  const melodiesLinks = ["Songs", "Radio", "Podcast"];
-  const accessLinks = ["Explor", "Artists", "Playlists", "Albums", "Trending"];
-  const contactLinks = ["About", "Policy", "Support"];
+  const melodiesLinks = ["Songs", "Radio", "Podcast"]
+  const accessLinks = ["Explor", "Artists", "Playlists", "Albums", "Trending"]
+  const contactLinks = ["About", "Policy", "Support"]
 
   return (
     <footer
@@ -120,7 +120,7 @@ const Footer = () => {
         }
       `}</style>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

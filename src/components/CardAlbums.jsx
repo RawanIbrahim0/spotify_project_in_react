@@ -1,4 +1,3 @@
-import React from 'react'
 
 const CardAlbums = ({name,songsCount,index,artist}) => {
 

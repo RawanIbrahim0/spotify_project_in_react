@@ -1,49 +1,36 @@
-import { useEffect, useState } from "react";
-import { Play, Clock, BarChart3, Headphones, BookOpen, Search } from "lucide-react";
-
-import Sidebar from "../components/Sidebar";
-import spotifyData from "../spotify_data_history.json";
+import { useEffect, useState } from "react"
+import { Play, Clock, BarChart3, Headphones, BookOpen, Search } from "lucide-react"
+import spotifyData from "../spotify_data_history.json"
 import SongCard from "../components/SongCard"
 import { useNavigate } from "react-router"
 
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
-import ParticleBackground from "../components/ParticleBackground";
+import ParticleBackground from "../components/ParticleBackground"
 
 
 export default function TrendingMusic() {
-  const [tracks, setTracks] = useState([]);
-  const [filteredTracks, setFilteredTracks] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [tracks, setTracks] = useState([])
+  const [filteredTracks, setFilteredTracks] = useState([])
+  const [activeFilter, setActiveFilter] = useState("All")
   const [stats, setStats] = useState({
     totalListeningTime: 0,
     dailyListening: 0,
     listeningTime: 0,
     chapters: 0,
-  });
-  const [chartData, setChartData] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(100);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchDate, setSearchDate] = useState('');
+  })
+  const [chartData, setChartData] = useState([])
+  const [visibleCount, setVisibleCount] = useState(100)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchDate, setSearchDate] = useState('')
 
-  // تحميل البيانات وتوزيعها على آخر سنة
   useEffect(() => {
     const validTracks = spotifyData
       .filter((item) => item.master_metadata_track_name && item.ts)
       .map((item, i) => {
-        const originalDate = new Date(item.ts);
+        const originalDate = new Date(item.ts)
 
-        // توزيع التواريخ داخل آخر سنة
-        const monthsOffset = i % 12;
-        const updatedDate = new Date();
-        updatedDate.setMonth(updatedDate.getMonth() - monthsOffset);
+        const monthsOffset = i % 12
+        const updatedDate = new Date()
+        updatedDate.setMonth(updatedDate.getMonth() - monthsOffset)
 
         return {
           title: item.master_metadata_track_name,
@@ -55,58 +42,54 @@ export default function TrendingMusic() {
           duration: `${Math.floor(item.ms_played / 60000)}:${String(
             Math.floor((item.ms_played % 60000) / 1000)
           ).padStart(2, "0")}`,
-        };
-      });
+        }
+      })
 
-    setTracks(validTracks);
-    setFilteredTracks(validTracks);
-    calculateStats(validTracks);
-    generateChart(validTracks);
-  }, []);
+    setTracks(validTracks)
+    setFilteredTracks(validTracks)
+    calculateStats(validTracks)
+    generateChart(validTracks)
+  }, [])
 
-  // Filter tracks based on search query and date
   useEffect(() => {
-    let filtered = [...tracks];
+    let filtered = [...tracks]
 
-    // Apply text search if query exists
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
+      const query = searchQuery.toLowerCase().trim()
       filtered = filtered.filter(
         (track) =>
           track.title?.toLowerCase().includes(query) ||
           track.artist?.toLowerCase().includes(query) ||
           track.album?.toLowerCase().includes(query)
-      );
+      )
     }
 
-    // Apply date filter if date is selected
     if (searchDate) {
-      const selectedDate = new Date(searchDate);
+      const selectedDate = new Date(searchDate)
       filtered = filtered.filter(track => {
-        const trackDate = new Date(track.originalTs || track.releaseDate);
-        return trackDate.toDateString() === selectedDate.toDateString();
-      });
+        const trackDate = new Date(track.originalTs || track.releaseDate)
+        return trackDate.toDateString() === selectedDate.toDateString()
+      })
     }
 
-    setFilteredTracks(filtered);
-    calculateStats(filtered);
-    generateChart(filtered);
-  }, [searchQuery, searchDate, tracks]);
+    setFilteredTracks(filtered)
+    calculateStats(filtered)
+    generateChart(filtered)
+  }, [searchQuery, searchDate, tracks])
 
-  // Handle infinite scroll
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 200
       ) {
-        setVisibleCount((prev) => Math.min(prev + 100, filteredTracks.length));
+        setVisibleCount((prev) => Math.min(prev + 100, filteredTracks.length))
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [filteredTracks]);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [filteredTracks])
 
   const calculateStats = (list) => {
     if (list.length === 0) {
@@ -141,9 +124,9 @@ export default function TrendingMusic() {
     const chartArray = Object.keys(grouped).map((date) => ({
       date,
       minutes: grouped[date].toFixed(1),
-    }));
+    }))
 
-    setChartData(chartArray.slice(-15));
+    setChartData(chartArray.slice(-15))
   };
 
   const handleFilter = (filterType) => {
@@ -154,24 +137,24 @@ export default function TrendingMusic() {
     if (filterType === "All") {
       filtered = tracks;
     } else if (filterType === "Year") {
-      const oneYearAgo = new Date();
-      oneYearAgo.setFullYear(now.getFullYear() - 1);
-      filtered = tracks.filter((t) => t.releaseDate >= oneYearAgo);
+      const oneYearAgo = new Date()
+      oneYearAgo.setFullYear(now.getFullYear() - 1)
+      filtered = tracks.filter((t) => t.releaseDate >= oneYearAgo)
     } else if (filterType === "Last six months") {
-      const sixMonthsAgo = new Date();
-      sixMonthsAgo.setMonth(now.getMonth() - 6);
-      filtered = tracks.filter((t) => t.releaseDate >= sixMonthsAgo);
+      const sixMonthsAgo = new Date()
+      sixMonthsAgo.setMonth(now.getMonth() - 6)
+      filtered = tracks.filter((t) => t.releaseDate >= sixMonthsAgo)
     } else if (filterType === "Last four weeks") {
-      const fourWeeksAgo = new Date();
-      fourWeeksAgo.setDate(now.getDate() - 28);
-      filtered = tracks.filter((t) => t.releaseDate >= fourWeeksAgo);
+      const fourWeeksAgo = new Date()
+      fourWeeksAgo.setDate(now.getDate() - 28)
+      filtered = tracks.filter((t) => t.releaseDate >= fourWeeksAgo)
     }
 
-    setFilteredTracks(filtered);
-    calculateStats(filtered);
-    generateChart(filtered);
-    setVisibleCount(20); // إعادة التهيئة عند تغيير الفلتر
-  };
+    setFilteredTracks(filtered)
+    calculateStats(filtered)
+    generateChart(filtered)
+    setVisibleCount(20)
+  }
     const navigate = useNavigate()
 
  const ToOnArtistPage = () => {
@@ -179,8 +162,6 @@ export default function TrendingMusic() {
   }
   return (
     <div>
-      {/*السايد بارالجانبي */}
-      {/* <Sidebar /> */}
       {/* الخلفية المتحركة  */}
       <div className="relative min-h-screen">
         <ParticleBackground />
@@ -330,5 +311,5 @@ export default function TrendingMusic() {
         </section>
       </div>
     </div>
-  );
+  )
 }

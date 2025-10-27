@@ -1,39 +1,39 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import ParticleBackground from "../components/ParticleBackground";
+import { useState } from "react"
+import { useNavigate } from "react-router"
+import ParticleBackground from "../components/ParticleBackground"
 
 const ContactUs = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault()
+    setIsSubmitting(true)
 
     // Simulate sending data
     setTimeout(() => {
-      console.log("Message sent:", formData);
-      setIsSubmitting(false);
+      console.log("Message sent:", formData)
+      setIsSubmitting(false)
       alert(
         "Thank you! Your message has been sent successfully and we'll get back to you soon."
-      );
+      )
       setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 2000);
-  };
+    }, 2000)
+  }
 
   return (
     <div>
@@ -366,7 +366,7 @@ const ContactUs = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactUs;
+export default ContactUs

@@ -13,7 +13,7 @@ const FilterButton = ({ text, isClicked, onclick }) => {
     >
       {text}
     </button>
-  );
-};
+  )
+}
 
-export default FilterButton;
+export default FilterButton

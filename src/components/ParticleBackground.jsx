@@ -3,9 +3,9 @@ import { useEffect } from "react";
 const ParticleBackground = (Background) => {
   useEffect(() => {
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js";
-    script.async = true;
+    const script = document.createElement("script")
+    script.src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"
+    script.async = true
     script.onload = () => {
       particlesJS("particles-js", {
         particles: {
@@ -28,14 +28,14 @@ const ParticleBackground = (Background) => {
           }
         },
         retina_detect: true
-      });
-    };
-    document.body.appendChild(script);
+      })
+    }
+    document.body.appendChild(script)
 
     return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <div
@@ -48,8 +48,8 @@ const ParticleBackground = (Background) => {
         zIndex: -1
       }}
     />
-  );
-};
+  )
+}
 
-export default ParticleBackground;
+export default ParticleBackground
 

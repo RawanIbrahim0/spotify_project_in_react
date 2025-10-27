@@ -1,16 +1,10 @@
-// import Hero from "./components/Hero";
-// import TrendingSongs from "..//TrendingSongs";
-// import AboutUs from "../components/AboutUs";
-// import Artists from "../components/Artists";
-// import AlbumSection from "../components/Album";
-// import Footer from "../components/Footer";
-import Hero from "../components/Hero";
+import Hero from "../components/Hero"
 import TrendingSongs from '../components/TrendingSongs'
 import AboutUs from '../components/AboutUs'
 import Artists from '../components/Artists'
 import AlbumSection from '../components/Album'
 import Footer from '../components/Footer'
-import ParticleBackground from "../components/ParticleBackground";
+import ParticleBackground from "../components/ParticleBackground"
 
 const HomePage = () => {
   return (
@@ -54,7 +48,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

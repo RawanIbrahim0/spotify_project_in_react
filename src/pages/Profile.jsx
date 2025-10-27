@@ -1,29 +1,26 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import ParticleBackground from "../components/ParticleBackground";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
+import ParticleBackground from "../components/ParticleBackground"
 
 const Profile = () => {
-  const [userData, setUserData] = useState(null);
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // جلب بيانات المستخدم من localStorage
-    const storedUser = localStorage.getItem("userData");
+    const storedUser = localStorage.getItem("userData")
     if (storedUser) {
-      setUserData(JSON.parse(storedUser));
+      setUserData(JSON.parse(storedUser))
     } else {
-      // إذا ما في بيانات، روح لصفحة التسجيل
-      navigate("/register");
+      navigate("/register")
     }
-  }, [navigate]);
+  }, [navigate])
 
-  // إذا البيانات لسا ما جاية
   if (!userData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-amber-50 text-xl">جاري التحميل...</div>
+        <div className="text-amber-50 text-xl"> Loading ...</div>
       </div>
-    );
+    )
   }
 
   return (
@@ -138,7 +135,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

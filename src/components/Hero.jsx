@@ -1,32 +1,30 @@
-import { useEffect, useState } from "react";
-import bg1 from "/assets/img/bg1.png";
-import bg2 from "/assets/img/bg2.png";
-import bg3 from "/assets/img/bg3.png";
+import { useEffect, useState } from "react"
+import bg1 from "/assets/img/bg1.png"
+import bg2 from "/assets/img/bg2.png"
+import bg3 from "/assets/img/bg3.png"
 
 const Slides = [
   { id: 1, image: bg1, bgColor: "#2b2f36" },
   { id: 2, image: bg2, bgColor: "#183a7a" },
   { id: 3, image: bg3, bgColor: "#1b2744" },
-];
+]
 
 function Hero() {
-  const [current, setCurrent] = useState(0);
-  const [flashActive, setFlashActive] = useState(false);
+  const [current, setCurrent] = useState(0)
+  const [flashActive, setFlashActive] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((i) => (i + 1) % Slides.length);
+      setCurrent((i) => (i + 1) % Slides.length)
 
-      // تأخير  ثانية قبل تفعيل الفلاش
       setTimeout(() => {
-        setFlashActive(true);
-        //طفي الفلاش بعد مدة الأنيميشن )
-        setTimeout(() => setFlashActive(false), 1000);
-      }, 1000); //  تأخير  ثانية
-    }, 3500);
+        setFlashActive(true)
+        setTimeout(() => setFlashActive(false), 1000)
+      }, 1000)
+    }, 3500)
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <div className="relative h-screen overflow-hidden">
@@ -65,7 +63,7 @@ function Hero() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default Hero;
+export default Hero

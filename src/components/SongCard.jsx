@@ -1,4 +1,4 @@
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa'
 import { useNavigate } from "react-router"
 
 const SongCard = ({ rank, title, artist, releaseDate, album, time, coverUrl, index }) => {
@@ -51,7 +51,7 @@ const SongCard = ({ rank, title, artist, releaseDate, album, time, coverUrl, ind
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SongCard;
+export default SongCard

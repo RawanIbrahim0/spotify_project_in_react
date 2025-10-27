@@ -3,29 +3,29 @@ import { useNavigate } from "react-router"
 
 
 const AllSongs = ({ artist }) => {
-  const [visibleCount, setVisibleCount] = useState(10);
-  const [visibleUniqueCount, setVisibleUniqueCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(10)
+  const [visibleUniqueCount, setVisibleUniqueCount] = useState(10)
   const [showUnique, setShowUnique] = useState(false)
 
-  const allSongs = artist.songs;
-  const visibleSongs = allSongs.slice(0, visibleCount);
+  const allSongs = artist.songs
+  const visibleSongs = allSongs.slice(0, visibleCount)
 
   const uniqueSongs = Array.from(
     new Map(allSongs.map((song) => [song.songName, song])).values()
-  );
-  const visibleUniqueSongs = uniqueSongs.slice(0, visibleUniqueCount);
+  )
+  const visibleUniqueSongs = uniqueSongs.slice(0, visibleUniqueCount)
 
 
   const tableStyle =
-    "h-[60vh] overflow-y-auto custom-scroll border border-[#8c61f9] p-4 rounded-xl shadow-[0_0_10px_#8c61f940] bg-[#05052e]";
+    "h-[60vh] overflow-y-auto custom-scroll border border-[#8c61f9] p-4 rounded-xl shadow-[0_0_10px_#8c61f940] bg-[#05052e]"
 
 
-  const currentSongs = showUnique ? visibleUniqueSongs : visibleSongs;
+  const currentSongs = showUnique ? visibleUniqueSongs : visibleSongs
 
 
   const getImage = (index) => {
-    const imageNumber = (index % 20) + 1;
-    return `/assets/images/m${imageNumber}.jpeg`;
+    const imageNumber = (index % 20) + 1
+    return `/assets/images/m${imageNumber}.jpeg`
   };
 
 const navigate = useNavigate()
@@ -150,7 +150,7 @@ const navigate = useNavigate()
         ) : null}
       </div>
     </div>
-  );
+  )
 }
 
 export default AllSongs

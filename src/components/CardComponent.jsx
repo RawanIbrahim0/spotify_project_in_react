@@ -1,4 +1,3 @@
-import React from 'react';
 
 const CardComponent = ({ title, artist, views, imageUrl }) => {
   return (
@@ -28,7 +27,7 @@ const CardComponent = ({ title, artist, views, imageUrl }) => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardComponent;
+export default CardComponent

@@ -1,5 +1,4 @@
-import React from "react";
-import AboutCard from "./AboutCard"; 
+import AboutCard from "./AboutCard"
 import GIF from "/assets/img/CAT-unscreen.gif"
 import {
   FaMicrophoneAlt,
@@ -8,9 +7,7 @@ import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
-} from "react-icons/fa";
-import { AiOutlineYoutube } from "react-icons/ai";
-
+} from "react-icons/fa"
 
 const AboutUs = () => {
   return (
@@ -65,7 +62,7 @@ const AboutUs = () => {
 
     
     </div>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

@@ -1,11 +1,10 @@
-import ArtistCard from './ArtistCard'; 
-import artist1 from '/assets/img/Artists/artist1.png';
-import artist2 from '/assets/img/Artists/artist2.png';
-import artist3 from '/assets/img/Artists/artist3.png';
-import artist4 from '/assets/img/Artists/artist4.png';
-// import artist5 from '/assets/img/Artists/artist5.png';
-import ViewAllButton from './ViewAllButton';
-import { useNavigate } from "react-router";
+import ArtistCard from './ArtistCard';
+import artist1 from '/assets/img/Artists/artist1.png'
+import artist2 from '/assets/img/Artists/artist2.png'
+import artist3 from '/assets/img/Artists/artist3.png'
+import artist4 from '/assets/img/Artists/artist4.png'
+import ViewAllButton from './ViewAllButton'
+import { useNavigate } from "react-router"
 
 
 const Artists = () => {
@@ -14,8 +13,7 @@ const Artists = () => {
     { id: 2, name: 'Nightmares', imageUrl: artist2 },
     { id: 3, name: 'Tate McRae', imageUrl: artist3 },
     { id: 4, name: 'Imagine Dragons', imageUrl: artist4 },
-    // { id: 5, name: 'Dua Lipa', imageUrl: artist5 },
-  ];
+  ]
 
   
     const navigate = useNavigate()
@@ -44,7 +42,7 @@ const Artists = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Artists;
+export default Artists

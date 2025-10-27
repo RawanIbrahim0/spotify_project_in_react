@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import ParticleBackground from "../components/ParticleBackground";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router"
+import ParticleBackground from "../components/ParticleBackground"
 
 const EditProfile = () => {
   const [form, setForm] = useState({
@@ -9,37 +9,37 @@ const EditProfile = () => {
     phone: "",
     email: "",
     profileImage: "",
-  });
-  const navigate = useNavigate();
+  })
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("userData");
+    const storedUser = localStorage.getItem("userData")
     if (storedUser) {
-      setForm(JSON.parse(storedUser));
+      setForm(JSON.parse(storedUser))
     }
-  }, []);
+  }, [])
 
   const handleInput = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleImage = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = () => {
-        setForm((prev) => ({ ...prev, profileImage: reader.result }));
-      };
-      reader.readAsDataURL(file);
+        setForm((prev) => ({ ...prev, profileImage: reader.result }))
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("userData", JSON.stringify(form));
-    navigate("/profile");
-  };
+    e.preventDefault()
+    localStorage.setItem("userData", JSON.stringify(form))
+    navigate("/profile")
+  }
 
   return (
     <div>
@@ -146,7 +146,7 @@ const EditProfile = () => {
       </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EditProfile;
+export default EditProfile

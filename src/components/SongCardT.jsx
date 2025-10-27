@@ -1,5 +1,4 @@
-import React from "react";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa"
 import { useNavigate } from "react-router"
 
 
@@ -56,7 +55,7 @@ const SongCardT = ({
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SongCardT;
+export default SongCardT

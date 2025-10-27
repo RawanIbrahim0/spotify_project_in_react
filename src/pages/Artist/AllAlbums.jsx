@@ -3,19 +3,8 @@ import CardAlbums from "../../components/CardAlbums"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const AllAlbums = ({ albums }) => {
-/*   const [visibleCount, setVisibleCount] = useState(6)
- */  /* const [visibleAlbums, setVisibleAlbums] = useState([]) */
-  const scrollContainerRef = useRef(null)
 
-/*   useEffect(() => {
-    if (Array.isArray(albums)) {
-      setVisibleAlbums(albums.slice(0, visibleCount))
-    }
-  }, [albums, visibleCount])
- */
-  /* const handleViewMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 6, albums.length))
-  }; */
+  const scrollContainerRef = useRef(null)
 
   const scroll = (direction) => {
     const container = scrollContainerRef.current
@@ -27,7 +16,7 @@ const AllAlbums = ({ albums }) => {
     } else {
       container.scrollBy({ left: scrollAmount, behavior: "smooth" })
     }
-  };
+  }
 
   return (
     <div className="relative h-[50vh]">
@@ -37,15 +26,6 @@ const AllAlbums = ({ albums }) => {
           <span className="text-white">All</span>
           <span className="text-[#8c61f9]">Albums</span>
         </h1>
-
-       {/*  {visibleCount < albums.length && (
-          <button
-            onClick={handleViewMore}
-            className="bg-[#8c61f9] text-white px-4 py-2 rounded hover:bg-[#7a4ff0]"
-          >
-            View More
-          </button>
-        )} */}
       </div>
 
       {/* الأسهم */}
@@ -80,7 +60,7 @@ const AllAlbums = ({ albums }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AllAlbums

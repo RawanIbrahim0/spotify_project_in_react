@@ -14,7 +14,7 @@ const Artist = () => {
 
   const [visibleCount, setVisibleCount] = useState(12)
 
-  const [totalMinutes, setTotalMinutes] = useState(0);
+  const [totalMinutes, setTotalMinutes] = useState(0)
 
 
   const navigate = useNavigate()
@@ -53,7 +53,7 @@ const Artist = () => {
             reasonEnd,
             shuffle,
             skipped,
-          });
+          })
         }
         return acc
       }, {})
@@ -81,7 +81,7 @@ const Artist = () => {
 
   const handleViewMore = () => {
     setVisibleCount((prev) => prev + 12)
-  };
+  }
 
   const ToOnArtistPage = (artistObj) => {
 
@@ -103,9 +103,7 @@ const Artist = () => {
       const artistName = e.master_metadata_album_artist_name
       const songName = e.master_metadata_track_name
 
-      // نتأكد أن الألبوم والمغني والأغنية موجودين
       if (albumName && artistName && songName) {
-        // إذا الألبوم مش موجود نضيفه
         if (!albumMap[albumName]) {
           albumMap[albumName] = {
             albumName,
@@ -114,23 +112,19 @@ const Artist = () => {
           };
         }
 
-        // نضيف الأغنية إذا ما كانت مكررة
         if (!albumMap[albumName].songs.includes(songName)) {
           albumMap[albumName].songs.push(songName)
         }
       }
     })
 
-    // نحول الـ object لمصفوفة منظمة
     const AllAlbums = Object.values(albumMap)
     return AllAlbums
   }
 
   return (
     <div>
-      {/*السايد بارالجانبي */}
-{/*     <Sidebar /> 
- */}      {/* الخلفية المتحركة  */}
+      {/* الخلفية المتحركة  */}
       <div className="relative min-h-screen">
         <ParticleBackground />
         {/* الشفافية فوق الخلفية */}

@@ -11,7 +11,7 @@ const CardsArtist = ({ name, onclick, index }) => {
         className="rounded-full w-[50%] h-[50%] hover:scale-105 duration-200 transform" />
       <p className="text-xl">{name}</p>
     </div>
-  );
-};
+  )
+}
 
 export default CardsArtist

@@ -1,12 +1,9 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback } from "react"
 
-// تأكد من صحة مسارات الملفات لديك
-import sampleSong from "/assets/audio/All-of-me.mp3";
-import albumCover from "/assets/img/all-of-me.jpeg";
-import ParticleBackground from "../components/ParticleBackground";
+import sampleSong from "/assets/audio/All-of-me.mp3"
+import albumCover from "/assets/img/all-of-me.jpeg"
+import ParticleBackground from "../components/ParticleBackground"
 
-// =====================================================================
-// بيانات كلمات الأغنية كما هي
 const LYRICS_DATA = [
   { time: 4.0, text: "Press Play to start the music and lyrics..." },
   { time: 9.0, text: "What would I do without your smart mouth" },
@@ -32,72 +29,72 @@ const LYRICS_DATA = [
   { time: 67.5, text: "Even when I lose I'm winning" },
   { time: 72.0, text: "'Cause I give you all of me" },
   { time: 75.0, text: "And you give me all of you, oh" },
-];
+]
 
 
 const MusicPlayer = () => {
-  const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [currentLyric, setCurrentLyric] = useState(LYRICS_DATA[0].text);
+  const audioRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [currentLyric, setCurrentLyric] = useState(LYRICS_DATA[0].text)
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.onloadedmetadata = () => {
-        setDuration(audioRef.current.duration);
-      };
+        setDuration(audioRef.current.duration)
+      }
     }
-  }, []);
+  }, [])
 
   const handleTimeUpdate = useCallback(() => {
     if (audioRef.current) {
-      const time = audioRef.current.currentTime;
-      setCurrentTime(time);
+      const time = audioRef.current.currentTime
+      setCurrentTime(time)
 
       const activeLyricEntry = LYRICS_DATA.find((lyric, index) => {
-        const startTime = lyric.time;
-        const nextLyric = LYRICS_DATA[index + 1];
-        const endTime = nextLyric ? nextLyric.time : duration;
+        const startTime = lyric.time
+        const nextLyric = LYRICS_DATA[index + 1]
+        const endTime = nextLyric ? nextLyric.time : duration
 
-        return time >= startTime && time < endTime;
-      });
+        return time >= startTime && time < endTime
+      })
 
       if (activeLyricEntry && activeLyricEntry.text !== currentLyric) {
-        setCurrentLyric(activeLyricEntry.text);
+        setCurrentLyric(activeLyricEntry.text)
       } else if (!activeLyricEntry && time >= duration && duration > 0) {
-        setCurrentLyric("Song finished. Press play to restart.");
+        setCurrentLyric("Song finished. Press play to restart.")
       }
     }
-  }, [duration, currentLyric]);
+  }, [duration, currentLyric])
 
   const togglePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        audioRef.current.pause()
       } else {
-        audioRef.current.play();
+        audioRef.current.play()
       }
-      setIsPlaying(!isPlaying);
+      setIsPlaying(!isPlaying)
     }
-  };
+  }
 
   const formatTime = (time) => {
-    if (isNaN(time) || time < 0) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
+    if (isNaN(time) || time < 0) return "0:00"
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`
+  }
 
   const handleSeek = (e) => {
-    const seekTime = (e.nativeEvent.offsetX / e.target.offsetWidth) * duration;
+    const seekTime = (e.nativeEvent.offsetX / e.target.offsetWidth) * duration
     if (audioRef.current) {
-      audioRef.current.currentTime = seekTime;
-      setCurrentTime(seekTime);
+      audioRef.current.currentTime = seekTime
+      setCurrentTime(seekTime)
     }
-  };
+  }
 
-  const progressPercent = (currentTime / duration) * 100 || 0;
+  const progressPercent = (currentTime / duration) * 100 || 0
 
   return (
     <div>
@@ -113,12 +110,9 @@ const MusicPlayer = () => {
         />
         <div className="relative z-100 ml-20 w-[80%]  flex items-center justify-center
          min-h-screen ">
-          {/* مشغل الموسيقى (Extra Wide Card) */}
           <div
-            // تم تغيير العرض الأقصى إلى max-w-6xl
             className="bg-[#273469ff] p-6 ml-[400px] rounded-xl  shadow-2xl max-w-6xl w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-12 transform transition duration-500 "
           >
-            {/* عنصر Audio الفعلي (مخفي) */}
             <audio
               ref={audioRef}
               src={sampleSong}
@@ -126,7 +120,7 @@ const MusicPlayer = () => {
               onEnded={() => setIsPlaying(false)}
             />
 
-            {/* 1. غلاف الأغنية (Cover) - على اليسار */}
+            {/* 1. غلاف الأغنية على اليسار */}
             <div className="md:w-1/3 flex-shrink-0 flex justify-center">
               <img
                 src={albumCover}
@@ -145,11 +139,9 @@ const MusicPlayer = () => {
                 <p className="text-2xl text-gray-100">John Legend</p>
               </div>
 
-              {/* الكلمات المتزامنة (Lyrics) - حجم خط أكبر */}
               <div className="min-h-[4rem] flex items-center mb-8">
                 <p
                   key={currentLyric}
-                  // زيادة حجم الخط للكلمات (text-3xl)
                   className="text-3xl font-bold text-[#e4d9ffff] transition-opacity duration-300 opacity-100"
                 >
                   {currentLyric}
@@ -158,7 +150,7 @@ const MusicPlayer = () => {
 
               {/* قسم التحكم: شريط التقدم والأزرار */}
               <div className="mt-auto">
-                {/* شريط التقدم (Progress Bar) مع الوقت */}
+                {/* شريط التقدم  مع الوقت */}
                 <div className="flex items-center space-x-3 mb-4">
                   <span className="text-sm text-gray-100 flex-shrink-0">
                     {formatTime(currentTime)}
@@ -179,7 +171,6 @@ const MusicPlayer = () => {
                   </span>
                 </div>
 
-                {/* أزرار التحكم - (في المنتصف الآن) */}
                 <div className="flex justify-center items-center space-x-6">
                   {/* زر الرجوع 10 ثواني */}
                   <button
@@ -205,7 +196,7 @@ const MusicPlayer = () => {
                     </svg>
                   </button>
 
-                  {/* زر التشغيل/الإيقاف (الأهم) */}
+                  {/* زر التشغيل/الإيقاف */}
                   <button
                     className="p-4 rounded-full shadow-xl transform hover:scale-110 transition duration-300 bg-violet-300 text-slate-900"
                     onClick={togglePlayPause}
@@ -270,7 +261,7 @@ const MusicPlayer = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MusicPlayer;
+export default MusicPlayer

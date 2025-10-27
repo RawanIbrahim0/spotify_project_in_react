@@ -1,51 +1,51 @@
-import React, { useState } from "react";
-import data from "../assets/spotify_data_history.json";
-import SongCardT from "../components/SongCardT";
-import ParticleBackground from "../components/ParticleBackground";
+import React, { useState } from "react"
+import data from "../assets/spotify_data_history.json"
+import SongCardT from "../components/SongCardT"
+import ParticleBackground from "../components/ParticleBackground"
 
 const General = () => {
-  const [filteredData, setFilteredData] = useState(data);
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [pageIndex, setPageIndex] = useState(0); // رقم الصفحة (0 يعني أول 20)
-  const pageSize = 20;
+  const [filteredData, setFilteredData] = useState(data)
+  const [isFiltered, setIsFiltered] = useState(false)
+  const [pageIndex, setPageIndex] = useState(0)
+  const pageSize = 20
 
   const handleFilter = () => {
     if (!isFiltered) {
-      const uniqueSongs = [];
-      const seen = new Set();
+      const uniqueSongs = []
+      const seen = new Set()
 
       data.forEach((song) => {
-        const key = song.master_metadata_track_name?.toLowerCase().trim();
+        const key = song.master_metadata_track_name?.toLowerCase().trim()
         if (key && !seen.has(key)) {
-          seen.add(key);
-          uniqueSongs.push(song);
+          seen.add(key)
+          uniqueSongs.push(song)
         }
-      });
+      })
 
-      setFilteredData(uniqueSongs);
-      setIsFiltered(true);
+      setFilteredData(uniqueSongs)
+      setIsFiltered(true)
     } else {
-      setFilteredData(data);
-      setIsFiltered(false);
+      setFilteredData(data)
+      setIsFiltered(false)
     }
-    setPageIndex(0); // بعد التصفية أو العودة نرجع للصفحة الأولى
-  };
+    setPageIndex(0)
+  }
 
   const handleNextPage = () => {
-    const maxPage = Math.floor((filteredData.length - 1) / pageSize);
+    const maxPage = Math.floor((filteredData.length - 1) / pageSize)
     if (pageIndex < maxPage) {
-      setPageIndex(pageIndex + 1);
+      setPageIndex(pageIndex + 1)
     }
-  };
+  }
   const handlePrevPage = () => {
     if (pageIndex > 0) {
-      setPageIndex(pageIndex - 1);
+      setPageIndex(pageIndex - 1)
     }
-  };
+  }
 
-  const start = pageIndex * pageSize;
-  const end = start + pageSize;
-  const displayedSongs = filteredData.slice(start, end);
+  const start = pageIndex * pageSize
+  const end = start + pageSize
+  const displayedSongs = filteredData.slice(start, end)
 
   return (
     <div>
@@ -127,7 +127,7 @@ const General = () => {
       </div>
     </div>
 
-  );
-};
+  )
+}
 
-export default General;
+export default General

@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import ParticleBackground from "../components/ParticleBackground";
+import { useState } from "react"
+import { useNavigate } from "react-router"
+import ParticleBackground from "../components/ParticleBackground"
 
 const Register = ({ setUserData }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -11,31 +11,30 @@ const Register = ({ setUserData }) => {
     email: "",
     password: "",
     profileImage: "",
-  });
+  })
 
   const handleInput = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleImage = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = () => {
-        setForm((prev) => ({ ...prev, profileImage: reader.result }));
-      };
-      reader.readAsDataURL(file);
+        setForm((prev) => ({ ...prev, profileImage: reader.result }))
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
-  // في صفحة Register - تأكد إنه عندك هالدالة
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setUserData(form); // ← هاد رح يعدل state في App.jsx
-    localStorage.setItem("userData", JSON.stringify(form));
-    navigate("/profile"); 
-  };
+    e.preventDefault()
+    setUserData(form)
+    localStorage.setItem("userData", JSON.stringify(form))
+    navigate("/profile")
+  }
 
   return (
     <div>
@@ -117,7 +116,7 @@ const Register = ({ setUserData }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

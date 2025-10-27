@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router";
-import logo from "../assets/img/logo-3d.png";
+import { useNavigate } from "react-router"
+import logo from "../assets/img/logo-3d.png"
 import {
   FaCompactDisc,
   FaUserAlt,
   FaPlayCircle,
   FaSignOutAlt,
-} from "react-icons/fa";
+} from "react-icons/fa"
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -16,17 +16,17 @@ function Sidebar() {
     { id: 2, name: "Artists", icon: <FaUserAlt />, path: "/allArtist" },
     { id: 3, name: "History Most Played", icon: <FaPlayCircle />, path: "/history" },
     { id: 4, name: "Logout", icon: <FaSignOutAlt />, path: "" },
-  ];
+  ]
 
   const handleNavigation = (path) => {
     if (path === "/logout") {
 
-      alert("You have been logged out!");
-      navigate("/");
+      alert("You have been logged out!")
+      navigate("/")
     } else {
-      navigate(path);
+      navigate(path)
     }
-  };
+  }
 
   return (
     <div
@@ -79,7 +79,7 @@ function Sidebar() {
         <p>© 2025 Harmoni</p>
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

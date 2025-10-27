@@ -1,10 +1,9 @@
-import React from "react";
-import CardComponent from "./CardComponent.jsx";
-import ViewAllButton from "./ViewAllButton.jsx";
+import CardComponent from "./CardComponent.jsx"
+import ViewAllButton from "./ViewAllButton.jsx"
 import EdSheeran from "/assets/img/EdSheeran.jpg"
 import Måneskin from "/assets/img/Måneskin.jpeg"
 import Adele from "/assets/img/Adele2.jpeg"
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"
 
 
 const musicVideos = [
@@ -29,16 +28,16 @@ const musicVideos = [
     views: "3M views",
     imageUrl: Adele ,
   },
-];
+]
 
  
   
 const AlbumSection = () => {
- const navigate = useNavigate();
+ const navigate = useNavigate()
 
  const ToOnArtistPage = (artistObj) => {
-   navigate("/allArtist");
- };
+   navigate("/allArtist")
+ }
 
   return (
     <section className="py-10 px-6">
@@ -60,7 +59,7 @@ const AlbumSection = () => {
         <ViewAllButton onclick={ToOnArtistPage} />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default AlbumSection;
+export default AlbumSection

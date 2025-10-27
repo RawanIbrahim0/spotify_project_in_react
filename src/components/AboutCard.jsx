@@ -1,4 +1,3 @@
-import React from 'react';
 
 const AboutCard = ({ title, description, icon }) => {
   return (
@@ -29,7 +28,7 @@ const AboutCard = ({ title, description, icon }) => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AboutCard;
+export default AboutCard

@@ -1,59 +1,59 @@
-import { useEffect, useState } from "react";
-import CardsArtist from "../../components/CardsArtist";
-import FilterButton from "../../components/FilterButton";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react"
+import CardsArtist from "../../components/CardsArtist"
+import FilterButton from "../../components/FilterButton"
+import { useNavigate } from "react-router"
 
 
 const TopArtists = ({ artists }) => {
-  const [sortedArtists, setSortedArtists] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(12);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [sortedArtists, setSortedArtists] = useState([])
+  const [visibleCount, setVisibleCount] = useState(12)
+  const [activeFilter, setActiveFilter] = useState("All")
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
 
   useEffect(() => {
-    filterArtists("All");
-  }, [artists]);
+    filterArtists("All")
+  }, [artists])
 
   const filterArtists = (filterType) => {
-    setActiveFilter(filterType);
+    setActiveFilter(filterType)
 
-    const now = new Date();
-    let cutoffDate = new Date(0);
+    const now = new Date()
+    let cutoffDate = new Date(0)
 
     if (filterType === "Last Year") {
-      cutoffDate = new Date();
-      cutoffDate.setFullYear(now.getFullYear() - 1);
+      cutoffDate = new Date()
+      cutoffDate.setFullYear(now.getFullYear() - 1)
     } else if (filterType === "Last 6 month") {
-      cutoffDate = new Date();
-      cutoffDate.setMonth(now.getMonth() - 6);
+      cutoffDate = new Date()
+      cutoffDate.setMonth(now.getMonth() - 6)
     } else if (filterType === "Last 4 week") {
-      cutoffDate = new Date();
-      cutoffDate.setDate(now.getDate() - 28);
+      cutoffDate = new Date()
+      cutoffDate.setDate(now.getDate() - 28)
     }
 
     const filtered = artists.map((artist) => {
       const recentSongs = artist.songs.filter(
         (song) => new Date(song.timestamp) >= cutoffDate
-      );
-      return { ...artist, songs: recentSongs };
-    });
+      )
+      return { ...artist, songs: recentSongs }
+    })
 
     const sorted = [...filtered].sort(
       (a, b) => b.songs.length - a.songs.length
     );
 
-    setSortedArtists(sorted.slice(0, 100));
-    setVisibleCount(12);
-  };
+    setSortedArtists(sorted.slice(0, 100))
+    setVisibleCount(12)
+  }
 
   const handleViewMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 12, 100));
-  };
+    setVisibleCount((prev) => Math.min(prev + 12, 100))
+  }
 
   const ToOnArtistPage = (artistObj) => {
-    navigate("/artist", { state: { artist: artistObj } });
+    navigate("/artist", { state: { artist: artistObj } })
   }
 
   const visibleArtists = sortedArtists.slice(0, visibleCount)
@@ -61,11 +61,6 @@ const TopArtists = ({ artists }) => {
   return (
     <div>
       <div>
-        {/* <h1 className="text-3xl font-bold flex justify-start items-center mt-3 gap-2">
-          <span className="text-white">Top</span>
-          <span className="text-[#8c61f9]">Artists</span>
-        </h1> */}
-
         <div className="flex justify-end items-center gap-2 mt-2">
           <FilterButton
             text="All"

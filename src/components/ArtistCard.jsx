@@ -1,4 +1,3 @@
-import React from 'react';
 
 const ArtistCard = ({ name, imageUrl }) => {
   return (
@@ -28,7 +27,7 @@ const ArtistCard = ({ name, imageUrl }) => {
       </div>
       <h3 className="text-2xl font-semibold text-[#273469ff] text-center mt-4">{name}</h3>
     </div>
-  );
-};
+  )
+}
 
-export default ArtistCard;
+export default ArtistCard

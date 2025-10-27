@@ -1,10 +1,4 @@
-import React from "react";
 import SongCardT from "./SongCardT";
-import { FaPlus } from "react-icons/fa";
-/* import song1 from "/assets/images/song1.png"
-import song2 from "/assets/images/song2.png"
-import song3 from "/assets/images/song3.png";
- */
 import { useNavigate } from "react-router";
 
 

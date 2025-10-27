@@ -10,7 +10,7 @@ const OneArtist = () => {
   const location = useLocation()
 
   const artist = location.state?.artist || JSON.parse(localStorage.getItem("artistData"))
-  const totalAllMinutesAllSongs = location.state?.totalMinutes || 0;
+  const totalAllMinutesAllSongs = location.state?.totalMinutes || 0
 
 
 
@@ -18,7 +18,6 @@ const OneArtist = () => {
     return <p>Not Found This Artist</p>
   }
 
-  // تابع لتجميع الألبومات من الأغاني الخاصة بالمغني
   const getAllAlbums = (songs, artistName) => {
     const albumMap = {}
 
@@ -39,7 +38,6 @@ const OneArtist = () => {
       }
     })
 
-    // نضيف كمان عدد الأغاني
     const formattedAlbums = Object.values(albumMap).map((album) => ({
       ...album,
       songCount: album.songs.length,
@@ -48,7 +46,6 @@ const OneArtist = () => {
     return formattedAlbums
   }
 
-  // حساب وقت الاستماع الكلي
   const totalMinutes = artist.songs
     ?.reduce((acc, song) => acc + song.msPlayed / 1000 / 60, 0)
     .toFixed(2)
@@ -56,13 +53,12 @@ const OneArtist = () => {
   const percentage = ((totalMinutes / totalAllMinutesAllSongs) * 100).toFixed(2)
   console.log("Percentage:", percentage, "%")
 
-  // تحديد الموسم الأكثر استماعًا
   const getSeason = (month) => {
     if (month === 12 || month === 1 || month === 2) return "Winter"
     if (month >= 3 && month <= 5) return "Spring"
     if (month >= 6 && month <= 8) return "Summer"
     return "Autumn"
-  };
+  }
 
   const seasonCount = artist.songs.reduce((acc, song) => {
     const date = new Date(song.timestamp)
