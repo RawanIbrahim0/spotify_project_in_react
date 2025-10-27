@@ -174,7 +174,7 @@ const Artist = () => {
               )}
             </section>
 
-            {/*كل الألبومات */}
+            {/*كل الألبومات yahiea did the Push */}
             <section className="h-[30%] p-3  mt-8">
               <AllAlbums albums={AllAlbum} />
             </section>
