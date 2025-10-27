@@ -10,11 +10,11 @@
 --space-cadet: #1e2749ff;
  */
 
- h1{
+ /* h1{
     color: #30343fff;
- }
+ } */
 
- h2{
+  /* h2{
     color: #fafaffff;
  }
 
@@ -28,4 +28,10 @@
 
  h5{
     color: #1e2749ff;
+    color: #0f152cfc;
  }
+
+ h6{
+    color: #8c61f9;
+ }  */
+ 

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "assets",
+			"path": "../../spotify_project_in_react/assets"
+		},
+		{
+			"name": "spotify_project_in_react",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
